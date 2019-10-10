@@ -1,0 +1,17 @@
+overwrite: true # 生成する度に上書きする
+schema:
+  # - http://localhost:3000/graphql
+  - ./graphql/schema.graphql
+generates:
+  ./client/gen/graphql-client-api.ts:
+    plugins:
+      - typescript
+      - typescript-operations
+      - typescript-react-apollo
+    config:
+      withHooks: true # react hooksでのみ使う
+      withComponent: false
+      withHOC: false
+  ./graphql/schema.json:
+    plugins:
+      - introspection
