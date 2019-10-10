@@ -14,7 +14,3 @@ type Post {
 type Query {
   posts: [Post]
 }
-
-schema {
-  query: Query
-}
