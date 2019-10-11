@@ -1,24 +1,24 @@
-overwrite: true # 生成する度に上書きする
+overwrite: true
 schema:
-  # - http://localhost:3000/graphql
   - ./graphql/schema.graphql
-documents:
-  - ./graphql/queries/*.graphql
-  - ./graphql/mutations/*.graphql
 generates:
-  ./server/gen/graphql-resolver-types.ts:
+  client/gen/types.ts:
     plugins:
       - typescript
-      - typescript-resolvers
-  ./client/gen/graphql-client-api.ts:
+  client/gen/:
+    documents:
+      - ./client/**/*.graphql
+    preset: near-operation-file
+    presetConfig:
+      baseTypesPath: "types"
+      extension: ".generated.ts"
     plugins:
-      - typescript
       - typescript-operations
       - typescript-react-apollo
     config:
-      withHooks: true # react hooksでのみ使う
+      withHooks: true
       withComponent: false
       withHOC: false
-  ./graphql/schema.json:
-    plugins:
-      - introspection
+hooks:
+  afterOneFileWrite:
+    - prettier --write

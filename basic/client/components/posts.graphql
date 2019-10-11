@@ -1,0 +1,15 @@
+query posts {
+  posts {
+    id
+    title
+    author {
+      ...authorFields
+      contract
+    }
+  }
+}
+
+fragment authorFields on Author {
+  firstName
+  lastName
+}

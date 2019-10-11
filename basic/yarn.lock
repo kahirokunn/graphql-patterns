@@ -441,6 +441,14 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
+"@graphql-codegen/add@1.8.1":
+  version "1.8.1"
+  resolved "https://registry.yarnpkg.com/@graphql-codegen/add/-/add-1.8.1.tgz#309a9f2cb5ef6b6e734c7d674b19bc289322d8b3"
+  integrity sha512-RElpbBz/GdhfqBp0KVNu5iNooDIoISIkUYvpXThHfrUJp9E/Ji2SqAQ6tD9peaWaXZuaKHCAXGfZ7+APQlum9A==
+  dependencies:
+    "@graphql-codegen/plugin-helpers" "1.8.1"
+    tslib "1.10.0"
+
 "@graphql-codegen/cli@^1.8.1":
   version "1.8.1"
   resolved "https://registry.yarnpkg.com/@graphql-codegen/cli/-/cli-1.8.1.tgz#2fc918ce97c6779c2549c7256445358333214bbe"
@@ -499,6 +507,16 @@
   integrity sha512-T4oVj50ICS6h9mBj6rE22URZ9NUjWqybQfPAvAJtUDPl+udcq4lqmk2gkr3wXW5l42Pdj91f1pQbLwpw3JpjTw==
   dependencies:
     "@graphql-codegen/plugin-helpers" "1.8.1"
+    tslib "1.10.0"
+
+"@graphql-codegen/near-operation-file-preset@^1.8.1":
+  version "1.8.1"
+  resolved "https://registry.yarnpkg.com/@graphql-codegen/near-operation-file-preset/-/near-operation-file-preset-1.8.1.tgz#032b2e9581c03166cf11c01e935ce981d5cf12d3"
+  integrity sha512-tfUI+fQEgSb9W+0bhCJ8T3NfzOfbU1Vti7tzzlX4TRpMtq2elJ0mqQWfEO2AvL0srChAjgJKYAZ4jVL+0MnT3w==
+  dependencies:
+    "@graphql-codegen/add" "1.8.1"
+    "@graphql-codegen/plugin-helpers" "1.8.1"
+    "@graphql-codegen/visitor-plugin-common" "1.8.1"
     tslib "1.10.0"
 
 "@graphql-codegen/plugin-helpers@1.8.1":

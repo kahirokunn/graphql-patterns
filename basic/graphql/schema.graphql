@@ -1,21 +1,29 @@
 type Author {
-  id: Int!
+  id: ID!
   firstName: String!
   lastName: String!
+  contract: Contract!
   posts(findTitle: String): [Post]
 }
 
 type Post {
-  id: Int!
+  id: ID!
   title: String!
-  author: Author!
+  author: Author
+  createdat: Datetime!
 }
 
 type Query {
-  posts: [Post],
-  authors: [Author]
+  posts: [Post!]!
 }
 
-type Mutation {
-  addPost (title: String!, authorId: ID!): Post
+enum Contract {
+  FREE
+  PREMIUM
 }
+
+schema {
+  query: Query
+}
+
+scalar Datetime
