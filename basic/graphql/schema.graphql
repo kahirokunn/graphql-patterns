@@ -12,5 +12,10 @@ type Post {
 }
 
 type Query {
-  posts: [Post]
+  posts: [Post],
+  authors: [Author]
+}
+
+type Mutation {
+  addPost (title: String!, authorId: ID!): Post
 }

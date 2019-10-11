@@ -1,0 +1,33 @@
+query deepUserPosts($findTitle: String!) {
+  posts {
+    id
+    title
+    author {
+      id
+      firstName
+      lastName
+      posts(findTitle: $findTitle) {
+        id
+        title
+        author {
+          id
+          firstName
+          lastName
+          posts(findTitle: $findTitle) {
+            id
+            title
+            author {
+              id
+              firstName
+              lastName
+              posts(findTitle: $findTitle) {
+                id
+                title
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

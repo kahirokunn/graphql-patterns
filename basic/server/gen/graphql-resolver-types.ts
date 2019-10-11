@@ -1,5 +1,6 @@
 import { GraphQLResolveInfo } from 'graphql';
 export type Maybe<T> = T | null;
+export type RequireFields<T, K extends keyof T> = { [X in Exclude<keyof T, K>]?: T[X] } & { [P in K]-?: NonNullable<T[P]> };
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string,
@@ -22,6 +23,17 @@ export type AuthorPostsArgs = {
   findTitle?: Maybe<Scalars['String']>
 };
 
+export type Mutation = {
+   __typename?: 'Mutation',
+  addPost?: Maybe<Post>,
+};
+
+
+export type MutationAddPostArgs = {
+  title: Scalars['String'],
+  authorId: Scalars['ID']
+};
+
 export type Post = {
    __typename?: 'Post',
   id: Scalars['Int'],
@@ -32,6 +44,7 @@ export type Post = {
 export type Query = {
    __typename?: 'Query',
   posts?: Maybe<Array<Maybe<Post>>>,
+  authors?: Maybe<Array<Maybe<Author>>>,
 };
 
 
@@ -110,6 +123,8 @@ export type ResolversTypes = {
   Int: ResolverTypeWrapper<Scalars['Int']>,
   String: ResolverTypeWrapper<Scalars['String']>,
   Author: ResolverTypeWrapper<Author>,
+  Mutation: ResolverTypeWrapper<{}>,
+  ID: ResolverTypeWrapper<Scalars['ID']>,
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>,
 };
 
@@ -120,6 +135,8 @@ export type ResolversParentTypes = {
   Int: Scalars['Int'],
   String: Scalars['String'],
   Author: Author,
+  Mutation: {},
+  ID: Scalars['ID'],
   Boolean: Scalars['Boolean'],
 };
 
@@ -130,6 +147,10 @@ export type AuthorResolvers<ContextType = any, ParentType extends ResolversParen
   posts?: Resolver<Maybe<Array<Maybe<ResolversTypes['Post']>>>, ParentType, ContextType, AuthorPostsArgs>,
 };
 
+export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
+  addPost?: Resolver<Maybe<ResolversTypes['Post']>, ParentType, ContextType, RequireFields<MutationAddPostArgs, 'title' | 'authorId'>>,
+};
+
 export type PostResolvers<ContextType = any, ParentType extends ResolversParentTypes['Post'] = ResolversParentTypes['Post']> = {
   id?: Resolver<ResolversTypes['Int'], ParentType, ContextType>,
   title?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
@@ -138,10 +159,12 @@ export type PostResolvers<ContextType = any, ParentType extends ResolversParentT
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
   posts?: Resolver<Maybe<Array<Maybe<ResolversTypes['Post']>>>, ParentType, ContextType>,
+  authors?: Resolver<Maybe<Array<Maybe<ResolversTypes['Author']>>>, ParentType, ContextType>,
 };
 
 export type Resolvers<ContextType = any> = {
   Author?: AuthorResolvers<ContextType>,
+  Mutation?: MutationResolvers<ContextType>,
   Post?: PostResolvers<ContextType>,
   Query?: QueryResolvers<ContextType>,
 };

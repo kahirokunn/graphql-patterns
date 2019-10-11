@@ -2,6 +2,9 @@ overwrite: true # 生成する度に上書きする
 schema:
   # - http://localhost:3000/graphql
   - ./graphql/schema.graphql
+documents:
+  - ./graphql/queries/*.graphql
+  - ./graphql/mutations/*.graphql
 generates:
   ./server/gen/graphql-resolver-types.ts:
     plugins:
