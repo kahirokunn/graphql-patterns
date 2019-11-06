@@ -19,6 +19,10 @@ generates:
       withHooks: true
       withComponent: false
       withHOC: false
+  client/resolver/types.generated.ts:
+    plugins:
+      - typescript
+      - typescript-resolvers
 hooks:
   afterOneFileWrite:
     - prettier --write
